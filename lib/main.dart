@@ -1,81 +1,186 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/Page2.dart';
+import 'dashboard.dart'; // Import halaman dashboard
 
-void main() => runApp(MaterialApp(
-  debugShowCheckedModeBanner: false,
-  home: Home(),
-));
+void main() {
+  runApp(const MyApp());
+}
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Login',
+      debugShowCheckedModeBanner: false,
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final TextEditingController _namaController = TextEditingController();
+  final TextEditingController _roleController = TextEditingController();
+  final TextEditingController _sekolahController = TextEditingController();
+  final TextEditingController _deskripsiController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/image/pink.webp"),
+            image: AssetImage("assets/image/pink.webp"), 
             fit: BoxFit.cover,
           ),
         ),
-        child: Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            Container(
-              width: MediaQuery.of(context).size.width * 0.9, // Lebar card disesuaikan
-              height: MediaQuery.of(context).size.height * 0.6, // Tinggi card disesuaikan
-              padding: const EdgeInsets.all(20.0),
-              alignment: Alignment.center,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                color: const Color.fromARGB(255, 241, 237, 241),
-                elevation: 5, // Menambah bayangan
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      const CircleAvatar(
-                        radius: 60.0, // Ukuran avatar dikecilkan
-                        backgroundImage: AssetImage('assets/image/fotoaku.png'),
+        child: Center(
+          child: SingleChildScrollView( 
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              color: Colors.pink[100], 
+              child: Padding(
+                padding: const EdgeInsets.all(16.0), 
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text(
+                      "Login",
+                      style: TextStyle(
+                        fontSize: 32.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pink[900], 
                       ),
-                      const SizedBox(height: 20),
-                      const Text(
-                        "Murti Dewi Oktaviani Larasati",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 18, 
-                          color: Color.fromARGB(255, 228, 133, 204),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      const Text(
-                        "Vocational High School Student\nat SMK Wikrama Bogor",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 14, 
-                          color: Color.fromARGB(248, 236, 161, 234),
-                        ),
-                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
 
-                      TextButton(onPressed: (){
+                   
+                    TextFormField(
+                      controller: _namaController,
+                      decoration: InputDecoration(
+                        labelText: "Nama",
+                        filled: true,
+                        fillColor: Colors.white,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(color: Colors.pink[300]!),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(color: Colors.pink[500]!),
+                        ),
+                      ),
+                      style: const TextStyle(color: Colors.black),
+                      keyboardType: TextInputType.name,
+                    ),
+                    const SizedBox(height: 16),
+
+                    
+                    TextFormField(
+                      controller: _roleController,
+                      decoration: InputDecoration(
+                        labelText: "Role",
+                        filled: true,
+                        fillColor: Colors.white,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(color: Colors.pink[300]!),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(color: Colors.pink[500]!),
+                        ),
+                      ),
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                    const SizedBox(height: 16),
+
+                    TextFormField(
+                      controller: _sekolahController,
+                      decoration: InputDecoration(
+                        labelText: "Asal Sekolah",
+                        filled: true,
+                        fillColor: Colors.white,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(color: Colors.pink[300]!),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(color: Colors.pink[500]!),
+                        ),
+                      ),
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                    const SizedBox(height: 16),
+
+                    TextFormField(
+                      controller: _deskripsiController,
+                      decoration: InputDecoration(
+                        labelText: "Deskripsi",
+                        filled: true,
+                        fillColor: Colors.white,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(color: Colors.pink[300]!),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(color: Colors.pink[500]!),
+                        ),
+                      ),
+                      style: const TextStyle(color: Colors.black),
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 3,
+                    ),
+                    const SizedBox(height: 24),
+
+                    ElevatedButton(
+                      onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Page2()),
+                          MaterialPageRoute(
+                            builder: (context) => Home(
+                              nama: _namaController.text,
+                              role: _roleController.text,
+                              sekolah: _sekolahController.text,
+                              deskripsi: _deskripsiController.text,
+                            ),
+                          ),
                         );
-                      }, child:Text('See More')
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        backgroundColor: Colors.pink[300],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
                       ),
-                    ],
-                  ),
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
